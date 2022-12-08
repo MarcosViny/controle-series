@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,4 @@ Route::get('/', function () {
 });
 
 
-Route::get('/hello', function() {
-    return "Olá mundo";
-});
+Route::get('/series', [SeriesController::class, 'index']);
