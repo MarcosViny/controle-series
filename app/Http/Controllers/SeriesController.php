@@ -12,7 +12,7 @@ class SeriesController extends Controller
     public function index()
     {
 
-        $series = Serie::all();
+        $series = Serie::query()->orderBy('nome')->get();
 
         return view('series.index')->with('series', $series);
     }
@@ -28,7 +28,7 @@ class SeriesController extends Controller
         $serie = new Serie();
         $serie->nome = $nomeSerie;
         $serie->save();
-        
+
         return redirect('/series');
     }
 }
