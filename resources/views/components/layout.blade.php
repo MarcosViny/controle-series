@@ -15,10 +15,10 @@
     @auth
     <a href="{{ route('logout') }}">Sair</a>
     @endauth
-
-    @guest
-        <a href="{{ route('login') }}">Entrar</a>
-    @endguest
+    
+    @if(!Route::is('login') && Auth::guest())
+    <a href="{{ route('login') }}">Entrar</a>
+    @endif
   </div>
 </nav>
     <div class="container">
