@@ -42,7 +42,7 @@ class SeriesController extends Controller
         $series->delete();
 
         return to_route('series.index')
-            ->with('mensagem.sucesso', "Série '{$series->nome}' removida com Sucesso");
+            ->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso");
     }
 
     public function edit(Series $series)
@@ -55,6 +55,6 @@ class SeriesController extends Controller
         $series->nome = $request->nome;
         $series->save();
 
-        return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com Sucesso!");
+        return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com sucesso!");
     }
 }
