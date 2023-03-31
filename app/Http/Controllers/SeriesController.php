@@ -7,6 +7,7 @@ use App\Mail\SeriesCreated;
 use App\Models\Series;
 use App\Models\User;
 use App\Repositories\SeriesRepository;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -34,10 +35,10 @@ class SeriesController extends Controller
 
     public function store(SeriesFormRequest $request)
     {
-        $userList = User::all();
+        $serie = $this->repository->add($request);
 
-        foreach ($userList as $user) {
-            $serie = $this->repository->add($request);
+        $userList = User::all();
+        foreach ($userList as $index => $user) {
 
             $email = new SeriesCreated(
                 $serie->nome,
@@ -46,10 +47,9 @@ class SeriesController extends Controller
                 $request->episodesPerSeason
             );
 
-            Mail::to($user)->send($email);
-            
             // Delay adicionado pois a versão gratuita do maitrap só permite envio de 05 e-mails a cada 10 segundos
-            sleep(2);
+            $when = now()->addSeconds($index * 5);
+            Mail::to($user)->later($when, $email);
         }
 
         return to_route('series.index')
