@@ -4,20 +4,23 @@
     @endauth
 
         <ul class="list-group">
-            @foreach($series as $series)
+            @foreach($series as $serie)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                @auth <a href="{{ route('seasons.index', $series->id) }}"> @endauth
-                    {{ $series->nome }}
-                @auth </a> @endauth
+                <div class="d-flex align-items-center">
+                    <img class="me-3" src="{{ asset('storage/' . $serie->cover) }}" width="100" class="img-thumbnail" alt="">
+                    @auth <a href="{{ route('seasons.index', $serie->id) }}"> @endauth
+                        {{ $serie->nome }}
+                    @auth </a> @endauth
+                </div>
 
                 <span class="d-flex">
                     @auth
-                    <a href="{{ route('series.edit', $series->id) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('series.edit', $serie->id) }}" class="btn btn-primary btn-sm">
                         E
                     </a>
                     @endauth
             
-                    <form action="{{ route('series.destroy', $series->id) }}" method="POST" class="ms-2">
+                    <form action="{{ route('series.destroy', $serie->id) }}" method="POST" class="ms-2">
                         @csrf
                         @method('DELETE')
                         @auth
