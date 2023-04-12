@@ -25,7 +25,8 @@ class SeriesFormRequest extends FormRequest
     {
         return [
             // Code Rules
-            'nome' => ['required', 'min:3']
+            'nome' => ['required', 'min:3'],
+            'cover' => 'mimes:jpeg,png,jpg,gif'
         ];
     }
 
