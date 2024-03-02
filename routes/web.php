@@ -2,6 +2,7 @@
 
 use App\Mail\SeriesCreated;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,6 @@ Route::get('/email', function() {
         5,
         10
     );
-});;
+});
 
 require __DIR__.'/auth.php';
